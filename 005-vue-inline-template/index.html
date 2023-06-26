@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Мій ToDo List та Таблиця Користувачів на Vue.js</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <style>
+      html {
+        background: #222;
+        color: #9c8d6a;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <todo-list></todo-list>
+      <users-table></users-table>
+    </div>
+
+    <template id="todo-list-template">
+      <div>
+        <h1>Мій ToDo List</h1>
+        <input
+          type="text"
+          v-model="newTask"
+          @keyup.enter="addTask"
+          placeholder="Введіть нове завдання"
+        />
+        <button @click="addTask">Додати завдання</button>
+        <ul>
+          <li v-for="(task, index) in taskList" :key="index">{{ task }}</li>
+        </ul>
+      </div>
+    </template>
+
+    <template id="users-table-template">
+      <div>
+        <h1>Таблиця користувачів</h1>
+        <table>
+          <thead>
+            <tr>
+              <th>Ім'я</th>
+              <th>Електронна пошта</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(user, index) in users" :key="index">
+              <td>{{ user.name }}</td>
+              <td>{{ user.email }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </template>
+
+    <script type="module" src="main.js"></script>
+  </body>
+</html>
