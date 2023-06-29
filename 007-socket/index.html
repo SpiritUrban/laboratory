@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <button id="msg">Message</button>
+
+    <script type="module">
+        import { io } from "https://cdn.socket.io/4.4.1/socket.io.esm.min.js";
+        const log = console.log;
+      
+        const socket = io('http://localhost:3000');
+
+        msg.addEventListener('click', ()=>{
+            // log('msg');
+            socket.emit('message', 'hello from frontend');
+        })
+
+        socket.on('ping', (counter)=>{
+            log('ping', counter);
+        });
+
+        socket.on('echo', (data)=>{
+            log('echo', data);
+        });
+
+      </script>
+    
+</body>
+</html>
