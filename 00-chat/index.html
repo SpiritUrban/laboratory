@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="/static/main.css">
+    </head>
+    <body>
+        <div class="super-wrapper">
+            <div class="room-list">
+                <button class="room selected" name="main" >Main</button>
+                <button class="room" name="sell">Sell</button>
+                <button class="room" name="music">Music</button>
+            </div>
+            <br>
+            <div class="wrapper">
+                <div class="chat">
+                    <div class="dialog"></div>
+                </div>
+                <div class="user-list">
+                </div>
+            </div>
+            <!-- Main form -->
+            <form class="form-main">
+                <fieldset disabled="disabled">
+                    <textarea name="message"></textarea>
+                    <button>send</button>
+                </fieldset>
+            </form>
+            <!-- Start form -->
+            <form class="form-start">
+                <div class="title">Please write your username</div>
+                <input type="text" name="username">
+                <button>send</button>
+            </form>
+        </div>
+        <script type="module" src="/static/main.js"></script>
+    </body>
+</html>
