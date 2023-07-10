@@ -1,0 +1,53 @@
+
+
+
+
+sudo apt install neovim    // install neovim
+
+
+
+*** Command to install vim-plug:
+
+curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+
+
+
+
+
+~/.config/nvim/init.vim    // this is a confug:
+
+
+call plug#begin('~/.config/nvim/plugged')
+
+Plug 'preservim/nerdtree'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+call plug#end()
+
+" Основні налаштування
+set number                  " Включити нумерацію рядків
+set tabstop=4               " Встановити розмір табуляції у 4 пробіли
+set shiftwidth=4            " Встановити розмір відступу у 4 пробіли
+set expandtab               " Використовувати пробіли замість символу табуляції
+set autoindent              " Включити автоматичні відступи
+set smartindent             " Включити розумні відступи
+
+" NERDTree налаштування
+let g:NERDTreeQuitOnOpen = 1 " Автоматично закривати NERDTree після відкриття файлу
+
+" coc.nvim налаштування
+let g:coc_global_extensions = [ 'coc-json', 'coc-tsserver' ]
+
+autocmd vimenter * NERDTree
+nnoremap <F3> :NERDTreeToggle<CR>
+
+
+
+
+To install plugins, need open nvim and run the command ":PlugInstall"
+
+
+To open nerdtree panel, need run the command ":NERDTree"
+     
