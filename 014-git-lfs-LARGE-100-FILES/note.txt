@@ -1,0 +1,23 @@
+Problem: If you can not make commit file bigger 100mb to GitHub.
+Solution: You should use "Git Large File Storage (LFS)".
+
+
+1.To install "Git Large File Storage (LFS)":
+> apt install git-lfs                           
+
+2.To add large file to LFS:
+> git lfs track "Uweb.data.gz"
+
+3.Next Just Commit.
+
+
+
+To add many files to LFS > (git lfs track "*.bin")
+
+
+
+If you want to make a commit through the terminal:
+
+> git add bigfile.bin
+> git commit -m "Add large file"
+> git push origin main
