@@ -1,0 +1,53 @@
+#HTTP Post Raw:::
+
+#Query for Add User:
+{
+    "query": "mutation { addUser(name: \"Іван\", email: \"ivan@example.com\") { id name email } }"
+}
+
+#Response:
+{
+	"data": {
+		"addUser": {
+			"id": "64afdcc058e39c5200e80e47",
+			"name": "Іван",
+			"email": "ivan@example.com"
+		}
+	}
+}
+  
+
+#GraphQL queries:
+
+# Ger Users Request: 
+query {
+    users {
+      id
+      name
+      email
+    }
+}
+
+#Response:
+{
+	"data": {
+		"users": [
+			{
+				"id": "64afdcc058e39c5200e80e47",
+				"name": "Іван",
+				"email": "ivan@example.com"
+			}
+		]
+	}
+}  
+
+
+# Add User Request:
+    mutation {
+        addUser(name: "Іван2", email: "ivan2@example.com") {
+            id
+            name
+            email
+        }
+    }
+
