@@ -43,11 +43,21 @@ query {
 
 
 # Add User Request:
-    mutation {
-        addUser(name: "Іван2", email: "ivan2@example.com") {
-            id
-            name
-            email
-        }
+mutation {
+    addUser(name: "Іван2", email: "ivan2@example.com") {
+        id
+        name
+        email
     }
+}
 
+
+# Get Users by name or part of name
+query {
+    users(name: "2") {
+        id
+        name
+        email
+    }
+}
+    
