@@ -1,0 +1,75 @@
+Config path:
+/opt/bitnami/apache2/conf/bitnami/bitnami.conf
+
+Old config:
+<VirtualHost _default_:80>
+  DocumentRoot "/opt/bitnami/apache/htdocs"
+  <Directory "/opt/bitnami/apache/htdocs">
+    Options Indexes FollowSymLinks
+    AllowOverride All
+    Require all granted
+  </Directory>
+...
+
+
+Page path by old config:  
+/opt/bitnami/apache2/htdocs/index.html  
+
+
+
+New config:
+<VirtualHost _default_:80>
+    DocumentRoot "/opt/bitnami/apache/htdocs"
+    <Directory "/opt/bitnami/apache/htdocs">
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Require all granted
+    </Directory>
+    
+    ProxyPass / http://localhost:3000/
+    ProxyPassReverse / http://localhost:3000/
+</VirtualHost>
+
+
+Restart:
+sudo /opt/bitnami/ctlscript.sh restart apache
+
+
+
+
+<VirtualHost _default_:443>
+    DocumentRoot "/opt/bitnami/apache/htdocs"
+    <Directory "/opt/bitnami/apache/htdocs">
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Require all granted
+    </Directory>
+    
+    # SSL Configuration
+    SSLEngine on
+    SSLCertificateFile "/path/to/your/certificatefile"
+    SSLCertificateKeyFile "/path/to/your/keyfile"
+    # If your certificate requires an intermediate certificate (CA Bundle),
+    # you specify it using the SSLCertificateChainFile directive
+    # SSLCertificateChainFile "/path/to/your/chainfile"
+    
+    ProxyPass / https://localhost:3000/
+    ProxyPassReverse / https://localhost:3000/
+</VirtualHost>
+
+
+
+<VirtualHost _default_:80>
+    DocumentRoot "/opt/bitnami/apache/htdocs"
+    <Directory "/opt/bitnami/apache/htdocs">
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Require all granted
+    </Directory>
+
+    ProxyPass /api/ http://localhost:3000/api/
+    ProxyPassReverse /api/ http://localhost:3000/api/
+
+    ProxyPass / http://localhost:5000/
+    ProxyPassReverse / http://localhost:5000/
+</VirtualHost>
