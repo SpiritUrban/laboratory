@@ -1,5 +1,6 @@
-Config path:
-/opt/bitnami/apache2/conf/bitnami/bitnami.conf
+Doc: https://docs.bitnami.com/general/infrastructure/mean/get-started/get-started/
+
+Config path: /opt/bitnami/apache2/conf/bitnami/bitnami.conf
 
 Old config:
 <VirtualHost _default_:80>
@@ -14,7 +15,6 @@ Old config:
 
 Page path by old config:  
 /opt/bitnami/apache2/htdocs/index.html  
-
 
 
 New config:
@@ -73,3 +73,24 @@ sudo /opt/bitnami/ctlscript.sh restart apache
     ProxyPass / http://localhost:5000/
     ProxyPassReverse / http://localhost:5000/
 </VirtualHost>
+
+
+
+<VirtualHost _default_:443>
+ServerAlias *
+SSLEngine on
+SSLCertificateFile "/opt/bitnami/apache/conf/bitnami/certs/server.crt"
+SSLCertificateKeyFile "/opt/bitnami/apache/conf/bitnami/certs/server.key"
+DocumentRoot "/opt/bitnami/projects/myapp"
+<Directory "/opt/bitnami/projects/myapp">
+  Require all granted
+</Directory>
+ProxyPass / http://localhost:3000/
+ProxyPassReverse / http://localhost:3000/
+</VirtualHost>
+
+
+
+
+Restart: 
+sudo /opt/bitnami/ctlscript.sh restart apache
