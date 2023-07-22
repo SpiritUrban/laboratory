@@ -50,4 +50,23 @@ To install plugins, need open nvim and run the command ":PlugInstall"
 
 
 To open nerdtree panel, need run the command ":NERDTree"
-     
+
+
+
+
+
+*** Formater
+
+curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+
+Plug 'sbdchd/neoformat'
+
+autocmd BufWritePre *.js,*.vue Neoformat
+
+
+:Neoformat
+
+npm install -g prettier
+
