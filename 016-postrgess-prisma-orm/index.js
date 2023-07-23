@@ -16,8 +16,6 @@ async function doIt(){
 }
 //doIt()
 
-
-
 app.get('/', async (req, res) => {
     const users = await prisma.user.findMany();
     res.json(users);
@@ -51,8 +49,16 @@ const resolvers = {
     Query: {
         info: () => `This is a GraphQL API.`,
         users: async (parent, args, context) => {
-            return context.prisma.user.findMany()
-        },
+          const { name, email } = args;
+          const where = {};
+          if (name) {
+            where.name = name;
+          }
+          if (email) {
+            where.email = email;
+          }
+          return context.prisma.user.findMany({ where });
+      },
     },
 
     Mutation: {
@@ -88,3 +94,4 @@ function main() {
 }
 
 main();
+
