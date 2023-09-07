@@ -1,4 +1,4 @@
-const { sum, mult, isOdd, essayOnTheBestFlavor, generateGreeting, isValidEmail } = require('./sum');
+const { sum, mult, isOdd, essayOnTheBestFlavor, generateGreeting, isValidEmail } = require('./begin');
 
 // 1
 test('adds 1 + 2 to equal 3', () => {
