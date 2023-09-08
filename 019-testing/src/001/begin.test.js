@@ -122,3 +122,109 @@ describe('12', () => {
 });
 
 
+describe('toMatchObject + (toHaveLength, toContainEqual)', () => {
+    // 13
+    test('toMatchObject example', () => {
+        const actualObject = {
+            name: 'John',
+            age: 30,
+            location: 'USA'
+        };
+
+        const expectedObject = {
+            name: 'John',
+            age: 30
+        };
+
+        expect(actualObject).toMatchObject(expectedObject);
+    });
+
+    // 14
+    test('nested toMatchObject example', () => {
+        const actualObject = {
+            name: 'John',
+            details: {
+                age: 30,
+                location: 'USA'
+            }
+        };
+
+        const expectedObject = {
+            details: {
+                age: 30
+            }
+        };
+
+        expect(actualObject).toMatchObject(expectedObject);
+    });
+
+    // 15
+    test('array toMatchObject example', () => {
+        const actualArray = [
+            { name: 'John', age: 30 },
+            { name: 'Jane', age: 25 }
+        ];
+
+        const expectedArray = [
+            { name: 'John' },
+            { name: 'Jane' }
+        ];
+
+        expect(actualArray).toMatchObject(expectedArray);
+    });
+
+    // 16
+    test('flexible array matching', () => {
+        const actualArray = [
+            { name: 'John', age: 30 },
+            { name: 'Jane', age: 25 },
+            { name: 'Sam', age: 22 }
+        ];
+
+        expect(actualArray).toHaveLength(3);
+        expect(actualArray).toContainEqual({ name: 'John', age: 30 });
+    });
+
+    // 17
+    test('check for partial object in array', () => {
+        const actualArray = [
+            { name: 'John', age: 30, location: 'USA' },
+            { name: 'Jane', age: 25, location: 'UK' }
+        ];
+
+        const expectedObject = { name: 'John', age: 30 };
+
+        const foundObject = actualArray.find(obj =>
+            Object.keys(expectedObject).every(key => obj[key] === expectedObject[key])
+        );
+
+        expect(foundObject).toMatchObject(expectedObject);
+    });
+
+    // 18
+    const houseForSale = {
+        bath: true,
+        bedrooms: 4,
+        kitchen: {
+            amenities: ['oven', 'stove', 'washer'],
+            area: 20,
+            wallColor: 'white',
+        },
+    };
+    const desiredHouse = {
+        bath: true,
+        kitchen: {
+            amenities: ['oven', 'stove', 'washer'],
+            wallColor: expect.stringMatching(/white|yellow/),
+        },
+    };
+
+    test('the house has my desired features', () => {
+        expect(houseForSale).toMatchObject(desiredHouse);
+    });
+
+
+});
+
+
+
