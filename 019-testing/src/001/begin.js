@@ -23,5 +23,11 @@ function isValidEmail(email) {
     return re.test(email);
 }
 
+function forEach(items, callback) {
+    for (let index = 0; index < items.length; index++) {
+      callback(items[index]);
+    }
+  }
 
-module.exports = { sum, mult, isOdd, essayOnTheBestFlavor, generateGreeting, isValidEmail };
+
+module.exports = { sum, mult, isOdd, essayOnTheBestFlavor, generateGreeting, isValidEmail, forEach };
