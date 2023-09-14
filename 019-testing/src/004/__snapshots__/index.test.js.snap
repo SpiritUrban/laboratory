@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`simple-page snapshot 1`] = `
+<html>
+  <head>
+    
+  
+    <title>
+      Simple Page
+    </title>
+    
+  
+    <link
+      href="style.css"
+      rel="stylesheet"
+    />
+    
+
+  </head>
+  
+
+  <body>
+    
+  
+    <h1>
+      Hello, World!
+    </h1>
+    
+  
+    <p>
+      This is a simple page.
+    </p>
+    
+  
+    <button
+      id="click-me"
+    >
+      Click Me!
+    </button>
+    
+
+
+
+  </body>
+</html>
+`;
