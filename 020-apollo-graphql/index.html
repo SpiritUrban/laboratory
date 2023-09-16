@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //  TERMINAL SCRIPT
+      // curl -X POST -H "Content-Type: application/json" -H "Accept: application/json" -d '{"query":"mutation AddTask($description: String!) { addTask(description: $description) { id description completed } }", "variables":{"description":"Новая задача"}}' http://localhost:4000/graphql
+
+      // INSOMNIABLE SCRIPT
+      //
+      // http://localhost:4000/graphql
+      //
+      //
+      // mutation AddNewTask {
+      //   addTask(description: "Новая задача") {
+      //     id
+      //     description
+      //     completed
+      //   }
+      // }
+      //
+      // query GetTasks {
+      //     tasks {
+      //         id
+      //         description
+      //         completed
+      //     }
+      // }
+
+      const query2 = `
+        mutation AddTask($description: String!) {
+            addTask(description: $description) {
+                id
+                description
+                completed
+            }
+        }
+    `;
+
+      const variables = {
+        description: "Новая задача",
+      };
+
+      fetch("http://localhost:4000/graphql", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          query: query2,
+          variables, // переменные, которые будут использоваться в мутации
+        }),
+      })
+        .then((r) => r.json())
+        .then((data) => console.log("data returned:", data));
+
+      const query = `
+        query GetTasks {
+            tasks {
+                id
+                description
+                completed
+            }
+        }
+    `;
+
+      fetch("http://localhost:4000/graphql", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({ query }),
+      })
+        .then((r) => r.json())
+        .then((data) => console.log("data returned:", data));
+    </script>
+  </body>
+</html>

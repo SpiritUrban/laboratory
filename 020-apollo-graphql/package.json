@@ -1,0 +1,17 @@
+{
+  "name": "020-apollo-graphql",
+  "version": "1.0.0",
+  "description": "",
+  "main": "client.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-server": "^3.12.1",
+    "graphql": "^16.8.0",
+    "node-fetch": "^3.3.2"
+  }
+}
