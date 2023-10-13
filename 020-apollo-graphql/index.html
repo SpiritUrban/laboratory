@@ -32,15 +32,25 @@
       //     }
       // }
 
-      const query2 = `
-        mutation AddTask($description: String!) {
-            addTask(description: $description) {
-                id
-                description
-                completed
+      const query = `
+            query GetTasks {
+                tasks {
+                    id
+                    description
+                    completed
+                }
             }
-        }
-    `;
+        `;
+
+      const query2 = `
+            mutation AddTask($description: String!) {
+                addTask(description: $description) {
+                    id
+                    description
+                    completed
+                }
+            }
+        `;
 
       const variables = {
         description: "Новая задача",
@@ -59,16 +69,6 @@
       })
         .then((r) => r.json())
         .then((data) => console.log("data returned:", data));
-
-      const query = `
-        query GetTasks {
-            tasks {
-                id
-                description
-                completed
-            }
-        }
-    `;
 
       fetch("http://localhost:4000/graphql", {
         method: "POST",

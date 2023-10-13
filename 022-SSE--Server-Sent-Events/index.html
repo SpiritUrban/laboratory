@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    
+  </head>
+  <body>
+ 
+    <h1>SSE</h1>
+    <script>
+      // Создаем новый объект EventSource, указыв URL, по которому будут получаться события
+      var source = new EventSource("http://localhost:3000/events");
+
+      // Обработчик для события 'open', которое срабатывает при установлении соединения
+      source.onopen = function (event) {
+        console.log("Соединение установлено");
+      };
+
+      // Обработчик для события 'message', которое срабатывает, когда сервер отправляет какие-либо данные
+      source.onmessage = function (event) {
+        // event.data содержит полученные данные в виде строки
+        console.log("Получены данные: ", event.data);
+        document.write( `<p style="font-size: 5rem;">${event.data}</p>`);
+      };
+
+      // Обработчик для события 'error', которое срабатывает, когда возникает ошибка соединения
+      source.onerror = function (event) {
+        console.error("Ошибка в EventSource", event);
+      };
+
+      // Вы также можете слушать свои собственные события
+      source.addEventListener(
+        "myEvent",
+        function (e) {
+          console.log("Получены данные от myEvent: ", e.data);
+        },
+        false
+      );
+    </script>
+  </body>
+</html>
