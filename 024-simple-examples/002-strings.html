@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./src/css/common.css" />
+  </head>
+  <body>
+    <h1 class="sound" onclick="speakText(this.innerHTML);">
+      JavaScript Strings
+    </h1>
+
+    <p class="sound" onclick="speakText(this.innerHTML);">
+      JavaScript strings are for storing and manipulating text.
+      <br />
+      A JavaScript string is zero or more characters written inside quotes.
+      <br />
+    </p>
+
+    <p class="example">let text = "John Doe";</p>
+
+    <p class="sound" onclick="speakText(this.innerHTML);">
+      You can use single or double quotes:
+    </p>
+
+    <p class="example">' ', " "</p>
+
+    <p class="sound" onclick="speakText(this.innerHTML);">
+      You can use quotes inside a string, as long as they don't match the quotes
+      surrounding the string:
+    </p>
+
+    <p class="example">
+      let answer1 = "It's alright";
+      <br />
+      let answer2 = "He is called 'Johnny'";
+      <br />
+      let answer2 = "He is \"called 'Johnny'";
+    </p>
+
+    <p class="sound" onclick="speakText(this.innerHTML);">
+      To find the length of a string, use the built-in length property:
+    </p>
+
+    <p class="example">
+      let text = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      <br />
+      let length = text.length;
+    </p>
+
+    <p class="sound" onclick="speakText(this.innerHTML);">
+      The same quotes inside the string will be chop it".
+    </p>
+
+    <p class="sound" onclick="speakText(this.innerHTML);">
+      The solution to avoid this problem, is to use the backslash escape
+      character.
+    </p>
+
+    <p class="sound" onclick="speakText(this.innerHTML);">
+      The backslash (\) escape character turns special characters into string
+      characters:
+    </p>
+
+    <p class="sound" onclick="speakText(this.innerHTML);">
+      The sequence \" inserts a double quote in a string:
+    </p>
+
+    <p class="sound" onclick="speakText(this.innerHTML);">
+      The sequence \\ inserts a backslash in a string:
+    </p>
+
+    <p class="sound" onclick="speakText(this.innerHTML);">\n New Line</p>
+
+    <p class="sound" onclick="speakText(this.innerHTML);">
+      You can also break up a code line within a text string with a single
+      backslash:
+    </p>
+
+    <p class="example">
+      document.getElementById("demo").innerHTML = "Hello \
+      <br />
+      Dolly!";
+    </p>
+
+    <p class="sound" onclick="speakText(this.innerHTML);">
+      Comparing two JavaScript objects always returns false.
+    </p>
+
+    <p class="example">
+      let x = new String("John");
+      <br />
+      let y = new String("John");
+      <br />
+      (x == y) -> false
+    </p>
+
+    <p class="sound" onclick="speakText(this.innerHTML);"></p>
+
+    <p class="sound" onclick="speakText(this.innerHTML);"></p>
+    <p class="sound" onclick="speakText(this.innerHTML);"></p>
+    <p class="sound" onclick="speakText(this.innerHTML);"></p>
+    <p class="sound" onclick="speakText(this.innerHTML);"></p>
+    <p class="sound" onclick="speakText(this.innerHTML);"></p>
+
+    <p class="example">
+      <br />
+    </p>
+
+    <script>
+      const log = console.log;
+      speakText("");
+
+      function speakText(text) {
+        const utterance = new SpeechSynthesisUtterance(text);
+        // Здесь вы можете настроить параметры, такие как скорость, высота и т. д.
+        // Например:
+        utterance.rate = 0.9; // скорость озвучивания (1 - нормальная скорость)
+        // utterance.pitch = 1; // высота звука (1 - нормальная высота)
+        window.speechSynthesis.speak(utterance);
+      }
+      setTimeout(() => {
+        window.scrollTo(0, document.body.scrollHeight);
+      }, 500);
+    </script>
+  </body>
+</html>
