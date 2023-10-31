@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        background: #222;
+        color: bisque;
+        font-size: 1.5rem;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+      }
+      section {
+        font-size: 1rem;
+        background: #111;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        margin: 1rem;
+        padding: 1rem;
+        font-family: monospace;
+        font-weight: 500;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Common HTML Events</h1>
+
+    <section>
+      <h2>onload - The browser has finished loading the page</h2>
+      <p>WEB-SITE event <br /></p>
+      <p id="loadIndicator" style="font-size: 3rem; padding: 1rem">-</p>
+    </section>
+
+    <section>
+      <h2>onchange - An HTML element has been changed</h2>
+      <input type="text" onchange="inputChange(this)" />
+    </section>
+
+    <section>
+      <h2>onclick - The user clicks an HTML element</h2>
+      <button onclick="btnClick(this)">Click my pleace!!!</button>
+    </section>
+
+    <section>
+      <h2>onmouseover - The user moves the mouse over an HTML element</h2>
+      <h2>onmouseout - The user moves the mouse away from an HTML element</h2>
+
+      <img
+        src="./src/img/dildo.webp"
+        alt="Dildo"
+        onmouseover="dildoOver(this)"
+        onmouseout="dildoOut(this)"
+        style="max-width: 20rem; transition: 0.5s"
+      />
+    </section>
+
+    <section>
+      <h2>onkeydown - The user pushes a keyboard key</h2>
+      <p>
+        Entire WEB-SITE !!!! <br />
+        Press any key on keyboard
+      </p>
+      <p id="keyCode" style="font-size: 3rem; padding: 1rem">-</p>
+    </section>
+
+    <script>
+      const log = console.log;
+      speakText(''); 
+
+      window.onload = () => {
+        log("Loaded");
+        const loadIndicator = document.querySelector("#loadIndicator");
+        loadIndicator.style.backgroundColor = "green";
+        loadIndicator.innerHTML = "Loaded!!!";
+      };
+
+      function inputChange(input) {
+        log(input.value);
+      speakText('An HTML element has been changed'); 
+
+        input.style.backgroundColor = "green";
+      }
+
+      function btnClick(btn) {
+        speakText('The user clicks an HTML element'); 
+        btn.style.backgroundColor = "green";
+      }
+
+      function dildoOver(dildo) {
+        dildo.style.transform = "scale(2.5)";
+        speakText('The user moves the mouse over an HTML element. And dildo so big!'); 
+      }
+
+      function dildoOut(dildo) {
+        dildo.style.transform = "scale(1)";
+        speakText('The user moves the mouse away from an HTML element. And dildo already is normal.'); 
+    }
+
+      window.onkeydown = (e) => {
+        log("keydown", e.code);
+        const keyCode = document.querySelector("#keyCode");
+        keyCode.innerHTML = e.code;
+        keyCode.style.backgroundColor = "green";
+        speakText('The user pushes a keyboard key'); 
+      };
+
+      function speakText(text) {
+        const utterance = new SpeechSynthesisUtterance(text);
+        // Здесь вы можете настроить параметры, такие как скорость, высота и т. д.
+        // Например:
+        // utterance.rate = 1; // скорость озвучивания (1 - нормальная скорость)
+        // utterance.pitch = 1; // высота звука (1 - нормальная высота)
+
+        window.speechSynthesis.speak(utterance);
+      }
+    </script>
+  </body>
+</html>
