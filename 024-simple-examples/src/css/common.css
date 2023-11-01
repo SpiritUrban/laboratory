@@ -8,14 +8,15 @@ body {
   }
   section {
     font-size: 1rem;
-    background: #111;
+    /* background: #111; */
     display: flex;
     align-items: center;
     flex-direction: column;
     margin: 1rem;
-    padding: 1rem;
+    padding: 2rem 1rem 1rem 1rem;
     font-family: monospace;
     font-weight: 500;
+    border-bottom: solid 3px rgb(0, 0, 0);
   }
 
   .sound {
@@ -29,11 +30,14 @@ body {
     transform: rotate(-3deg);
   }
 
-  .example{
-    font-size: 2rem;
+  .example, pre{
+    font-size: 1.4rem;
     background: #111;
     color: lightseagreen;
     margin: 1rem;
     padding: 1rem;
     border-radius: 1rem;
   }
+
+  .keyword { color: blue; }
+  .string { color: green; }

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./src/css/common.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/atom-one-dark.min.css"
+    />
+    <!--
+       night-owl 
+    atom-one-dark
+    
+    -->
+  </head>
+  <body>
+    <h1 class="sound" onclick="speakText(this.innerHTML);">
+      JavaScript String Methods
+    </h1>
+
+    <section>
+      <p class="sound" onclick="speakText(this.innerHTML);">
+        substring(). slice(). substr(). replace(). replaceAll(). toUpperCase().
+        toLowerCase(). concat(). trim(). trimStart(). trimEnd(). padStart().
+        padEnd(). charAt(). charCodeAt(). split().
+      </p>
+
+      <p class="sound" onclick="speakText(this.innerHTML);">
+        There are 3 methods for extracting a part of a string:
+      </p>
+
+      <pre><code>
+slice(start, end);
+substring(start, end);
+substr(start, length);
+</code></pre>
+    </section>
+
+    <section>
+      <h2 class="sound" onclick="speakText(this.innerHTML);">
+        JavaScript String slice()
+      </h2>
+
+      <p class="sound" onclick="speakText(this.innerHTML);">
+        slice() extracts a part of a string and returns the extracted part in a
+        new string.
+      </p>
+
+      <p class="sound" onclick="speakText(this.innerHTML);">
+        The method takes 2 parameters: start position, and end position (end not
+        included).
+      </p>
+
+      <pre><code>
+let text = "Apple, Banana, Kiwi";
+let part = text.slice(7, 13);
+</code></pre>
+
+      <p class="sound" onclick="speakText(this.innerHTML);">
+        Slice out a portion of a string from position 7 to position 13:
+      </p>
+
+      <p class="sound" onclick="speakText(this.innerHTML);">
+        If you omit the second parameter, the method will slice out the rest of
+        the string:
+      </p>
+
+      <pre><code>
+let text = "Apple, Banana, Kiwi";
+let part = text.slice(7);
+</code></pre>
+
+      <p class="sound" onclick="speakText(this.innerHTML);">
+        If a parameter is negative, the position is counted from the end of the
+        string:
+      </p>
+
+      <pre><code>
+let text = "Apple, Banana, Kiwi";
+let part = text.slice(-12);
+</code></pre>
+
+      <p class="sound" onclick="speakText(this.innerHTML);">
+        This example slices out a portion of a string from position -12 to
+        position -6:
+      </p>
+
+      <pre><code>
+let text = "Apple, Banana, Kiwi";
+let part = text.slice(-12, -6);    
+</code></pre>
+
+    </section>
+
+    <section>
+      <h2 class="sound" onclick="speakText(this.innerHTML);">
+        JavaScript String substring()
+      </h2>
+
+    </section>
+
+    <p class="sound" onclick="speakText(this.innerHTML);"></p>
+    <p class="sound" onclick="speakText(this.innerHTML);"></p>
+    <p class="sound" onclick="speakText(this.innerHTML);"></p>
+
+    <pre><code>
+    </code></pre>
+
+    <script src="./src/js/highlight.js"></script>
+
+    <script>
+      const log = console.log;
+      speakText("");
+
+      function speakText(text) {
+        const utterance = new SpeechSynthesisUtterance(text);
+        // Здесь вы можете настроить параметры, такие как скорость, высота и т. д.
+        // Например:
+        utterance.rate = 0.9; // скорость озвучивания (1 - нормальная скорость)
+        // utterance.pitch = 1; // высота звука (1 - нормальная высота)
+        window.speechSynthesis.cancel();
+        window.speechSynthesis.speak(utterance);
+      }
+      setTimeout(() => {
+        window.scrollTo(0, document.body.scrollHeight);
+      }, 500);
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+    <script>
+      hljs.highlightAll();
+    </script>
+  </body>
+</html>
