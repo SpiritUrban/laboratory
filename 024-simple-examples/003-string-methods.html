@@ -21,7 +21,8 @@
       JavaScript String Methods
     </h1>
 
-    <section>
+    <!-- ***************************************** Article ***************************************** -->
+    <article>
       <p class="sound" onclick="speakText(this.innerHTML);">
         substring(). slice(). substr(). replace(). replaceAll(). toUpperCase().
         toLowerCase(). concat(). trim(). trimStart(). trimEnd(). padStart().
@@ -37,9 +38,10 @@ slice(start, end);
 substring(start, end);
 substr(start, length);
 </code></pre>
-    </section>
+    </article>
 
-    <section>
+    <!-- ***************************************** Article ***************************************** -->
+    <article>
       <h2 class="sound" onclick="speakText(this.innerHTML);">
         JavaScript String slice()
       </h2>
@@ -92,15 +94,35 @@ let part = text.slice(-12);
 let text = "Apple, Banana, Kiwi";
 let part = text.slice(-12, -6);    
 </code></pre>
+    </article>
 
-    </section>
-
-    <section>
+    <!-- ***************************************** Article ***************************************** -->
+    <article id="article2">
       <h2 class="sound" onclick="speakText(this.innerHTML);">
         JavaScript String substring()
       </h2>
-
-    </section>
+      <script>
+        const article = document.querySelector("#article2");
+        [
+          "substring() is similar to slice().",
+          "The difference is that start and end values less than 0 are treated as 0 in substring().",
+          `
+>>code
+let str = "Apple, Banana, Kiwi";
+let part = str.substring(7, 13);
+`,
+"He's purely positive!",
+        ].forEach((item) => {
+          let template  = `
+            <p class="sound" onclick="speakText(this.innerHTML);"> ${item} </p>          
+          `;
+          if (item.slice(0, 7) == "\n>>code")
+            template = `<pre><code>${item.slice(7)}</code></pre>          
+          `;
+          article.innerHTML += template;
+        });
+      </script>
+    </article>
 
     <p class="sound" onclick="speakText(this.innerHTML);"></p>
     <p class="sound" onclick="speakText(this.innerHTML);"></p>
