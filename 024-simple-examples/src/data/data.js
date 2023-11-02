@@ -8,7 +8,8 @@ const data4 = {
 specifies the length of the extracted part.`,
       ],
       exaple: `let str = "Apple, Banana, Kiwi";
-let part = str.substr(7, 6);`,
+let part = str.substr(7, 6);
+// part -> 'Banana'`,
     },
     {
       text: [
@@ -18,7 +19,8 @@ substr() will slice out the rest of the string.`,
 the position counts from the end of the string.`,
       ],
       exaple: `let str = "Apple, Banana, Kiwi";
-let part = str.substr(7);`,
+let part = str.substr(7);
+// part -> 'Banana, Kiwi'`,
     },
   ],
 };

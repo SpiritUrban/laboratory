@@ -5,7 +5,7 @@ body {
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding: 3rem;
+  padding: 3rem 3rem 0rem 3rem;
 }
 
 section {
@@ -75,7 +75,7 @@ pre {
   display: flex;
   align-items: stretch;
   flex-direction: row;
-  margin: 6rem 3rem 3rem 3rem;
+  margin: 6rem 3rem 0rem 3rem;
   padding: 2rem 1rem 1rem 1rem;
   font-family: monospace;
   font-weight: 500;
@@ -86,6 +86,11 @@ pre {
   display: flex;
   align-items: end;
 }
+
+.scene .left img {
+  max-height: 90vh;
+}
+
 .scene .right {
   /* background: #283c482b; */
   width: 100%;
@@ -125,7 +130,7 @@ pre {
   transform: translateY(-0.3rem) scale(1.05);
   filter: drop-shadow(0px 7px 5px #00000696);
 }
- 
+
 .scene .right .top .scene-example {
   width: fit-content;
   margin: 3rem auto 1rem auto;

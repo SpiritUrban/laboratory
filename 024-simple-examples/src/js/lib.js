@@ -42,3 +42,5 @@ function speakText2(text, clb) {
   window.speechSynthesis.cancel();
   window.speechSynthesis.speak(utterance);
 }
+
+const scrollDown = () => window.scrollTo(0, document.body.scrollHeight);

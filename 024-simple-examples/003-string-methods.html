@@ -210,81 +210,82 @@ let part = str.substr(7);
           </button>
         </div>
       </div>
-
-      <script src="./src/js/lib.js"></script>
-      <script src="./src/data/data.js"></script>
-
-      <script>
-        let portionPointer = 0;
-        let phrasePointer = 0;
-
-        const article4 = document.querySelector("#article4");
-        const header = article4.querySelector("h2");
-        const dialog = article4.querySelector(".top");
-
-        async function runArticle4(btn) {
-          btn.style.display = "none";
-          document.querySelector("#next-btn").style.display = "none";
-          playSound("./src/sounds/yamete_kudasai.mp3");
-          await pause(2000);
-          runPortion();
-        }
-
-        function nextPortion(btn) {
-          btn.style.display = "none";
-          phrasePointer = 0;
-          portionPointer++;
-          runPortion();
-        }
-
-        function addExampleToScene(content) {
-          const pre = document.createElement("pre");
-          const code = document.createElement("code");
-          pre.classList.add("scene-example");
-          code.innerHTML = content;
-          pre.appendChild(code);
-          dialog.appendChild(pre);
-          hljs.highlightAll();
-        }
-
-        function addPhraseToScene(content) {
-          const node = document.createElement("pre");
-          node.onclick = () => speakText(node.innerHTML);
-          node.classList.add("scene-phrase");
-          node.innerHTML = content;
-          dialog.appendChild(node);
-        }
-
-        async function runPortion() {
-          header.innerHTML = `<h2 class="sound" onclick="speakText(this.innerHTML);">${data4.header.trim()}</h2>`;
-          addExampleToScene(data4.portions[portionPointer].exaple);
-          await pause(2000);
-          phraseCicle();
-        }
-
-        // recursion repetition of all text phrases
-        function phraseCicle() {
-          addPhraseToScene(data4.portions[portionPointer].text[phrasePointer]);
-          //
-          speakText2(data4.portions[portionPointer].text[phrasePointer], () => {
-            setTimeout(() => {
-              phrasePointer++;
-              if (
-                phrasePointer <=
-                data4.portions[portionPointer].text.length - 1
-              ) {
-                phraseCicle();
-              } else {
-                log("The end of phrases has been reached");
-                if (portionPointer < data4.portions.length - 1) {
-                  document.querySelector("#next-btn").style.display = "block";
-                }
-              }
-            }, 1000);
-          });
-        }
-      </script>
     </article>
+
+    <script src="./src/js/lib.js"></script>
+    <script src="./src/data/data.js"></script>
+
+    <script>
+      let portionPointer = 0;
+      let phrasePointer = 0;
+
+      const article4 = document.querySelector("#article4");
+      const header = article4.querySelector("h2");
+      const dialog = article4.querySelector(".top");
+
+      async function runArticle4(btn) {
+        btn.style.display = "none";
+        document.querySelector("#next-btn").style.display = "none";
+        playSound("./src/sounds/yamete_kudasai.mp3");
+        await pause(2000);
+        runPortion();
+      }
+
+      function nextPortion(btn) {
+        btn.style.display = "none";
+        phrasePointer = 0;
+        portionPointer++;
+        runPortion();
+      }
+
+      function addExampleToScene(content) {
+        const pre = document.createElement("pre");
+        const code = document.createElement("code");
+        pre.classList.add("scene-example");
+        code.innerHTML = content;
+        pre.appendChild(code);
+        dialog.appendChild(pre);
+        hljs.highlightAll();
+      }
+
+      function addPhraseToScene(content) {
+        const node = document.createElement("pre");
+        node.onclick = () => speakText(node.innerHTML);
+        node.classList.add("scene-phrase");
+        node.innerHTML = content;
+        dialog.appendChild(node);
+      }
+
+      async function runPortion() {
+        header.innerHTML = `<h2 class="sound" onclick="speakText(this.innerHTML);">${data4.header.trim()}</h2>`;
+        addExampleToScene(data4.portions[portionPointer].exaple);
+        await pause(2000);
+        phraseCicle();
+      }
+
+      // recursion repetition of all text phrases
+      function phraseCicle() {
+        addPhraseToScene(data4.portions[portionPointer].text[phrasePointer]);
+        scrollDown();
+        //
+        speakText2(data4.portions[portionPointer].text[phrasePointer], () => {
+          setTimeout(() => {
+            phrasePointer++;
+            if (
+              phrasePointer <=
+              data4.portions[portionPointer].text.length - 1
+            ) {
+              phraseCicle();
+            } else {
+              log("The end of phrases has been reached");
+              if (portionPointer < data4.portions.length - 1) {
+                document.querySelector("#next-btn").style.display = "block";
+              }
+            }
+          }, 1000);
+        });
+      }
+    </script>
 
     <script src="./src/js/highlight.js"></script>
 
@@ -292,7 +293,7 @@ let part = str.substr(7);
       speakText("");
 
       setTimeout(() => {
-        window.scrollTo(0, document.body.scrollHeight);
+        scrollDown();
       }, 500);
     </script>
 
