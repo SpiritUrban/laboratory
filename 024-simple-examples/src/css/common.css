@@ -97,15 +97,16 @@ pre {
 }
 .scene .right h2 {
   width: fit-content;
-  margin-top: -2rem;
+  margin-top: -4rem;
+  padding: 2rem;
 }
 .scene .right .top {
   /* height: 30%; */
-  margin-top: 3rem;
+  margin-top: -2rem;
   transition: 0.3s;
 }
 
-.scene .right .top pre {
+.scene .right .top .scene-phrase {
   border: 3px solid gray;
   padding: 1rem;
   border-radius: 2rem;
@@ -115,26 +116,23 @@ pre {
   cursor: pointer;
   transition: 0.3s;
   filter: drop-shadow(0px 0px 0px #00000600);
+  width: fit-content;
+  margin: 1rem auto;
+  animation: fadeIn 1s ease-in-out forwards;
 }
 
-.scene .right .top pre:hover {
+.scene .right .top .scene-phrase:hover {
   transform: translateY(-0.3rem) scale(1.05);
   filter: drop-shadow(0px 7px 5px #00000696);
 }
-.scene .right .bottom {
-  /* height: 50%; */
-  /* background: rgba(159, 111, 48, 0.19); */
-  /* position: absolute; */
-  /* bottom: 0; */
-  width: 100%;
-  margin-top: 2rem;
-}
-
-.scene .right .bottom pre {
+ 
+.scene .right .top .scene-example {
   width: fit-content;
-  margin: auto;
+  margin: 3rem auto 1rem auto;
   /* filter: drop-shadow(0px 7px 5px #00000642); */
   animation: fadeIn 1s ease-in-out forwards;
+  border-radius: 0;
+  border: none;
 }
 
 @keyframes fadeIn {
@@ -147,8 +145,7 @@ pre {
 }
 
 .scene .right .next-btn {
-  position: absolute;
-  bottom: 0;
+  margin: 3rem auto;
   transform: scale(1.5);
   display: none;
 }

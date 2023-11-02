@@ -243,6 +243,11 @@ let part = str.substr(7);`,
         let portionPointer = 0;
         let phrasePointer = 0;
 
+        const article4 = document.querySelector("#article4");
+        const header = article4.querySelector("h2");
+        const dialog = article4.querySelector(".top");
+        // const board = article4.querySelector(".bottom");
+
         function playSound(path, volume = 1) {
           let audio = new Audio(path);
           audio.volume = volume;
@@ -271,15 +276,17 @@ let part = str.substr(7);`,
           window.speechSynthesis.speak(utterance);
         }
 
-        function runArticle4(btn) {
+        const pause = async (time) =>
+          new Promise((res, rej) => {
+            setTimeout(res, time);
+          });
+
+        async function runArticle4(btn) {
           btn.style.display = "none";
           document.querySelector("#next-btn").style.display = "none";
-          
-          playSound('./src/sounds/yamete_kudasai.mp3');
-
-          setTimeout(()=>{
-            runPortion();
-          }, 2000)
+          playSound("./src/sounds/yamete_kudasai.mp3");
+          await pause(2000);
+          runPortion();
         }
 
         function nextPortion(btn) {
@@ -289,43 +296,50 @@ let part = str.substr(7);`,
           runPortion();
         }
 
-        function runPortion() {
-          const article4 = document.querySelector("#article4");
-          const header = article4.querySelector("h2");
-          const dialog = article4.querySelector(".top");
-          const board = article4.querySelector(".bottom");
-
+        async function runPortion() {
           header.innerHTML = `<h2 class="sound" onclick="speakText(this.innerHTML);">${data4.header.trim()}</h2>`;
-          let template;
-          board.innerHTML = `<pre><code>${data4.portions[portionPointer].exaple}</code></pre>`;
+          // dialog.innerHTML += `<pre class="scene-example"><code>${data4.portions[portionPointer].exaple}</code></pre>`;
 
-          function phraseCicle() {
-            dialog.innerHTML += `<pre onclick="speakText(this.innerHTML)">${data4.portions[portionPointer].text[phrasePointer]}</pre>`;
-            speakText2(
-              data4.portions[portionPointer].text[phrasePointer],
-              () => {
-                // recursion repetition of all text phrases
-                setTimeout(() => {
-                  phrasePointer++;
-                  if (
-                    phrasePointer <=
-                    data4.portions[portionPointer].text.length - 1
-                  ) {
-                    phraseCicle();
-                  }
-                  {
-                    log("The end of phrases has been reached");
-                    if (portionPointer < data4.portions.length - 1) {
-                      document.querySelector("#next-btn").style.display =
-                        "block";
-                    }
-                  }
-                }, 1000);
-              }
-            );
-          }
-          phraseCicle();
+          const pre = document.createElement("pre");
+          const code = document.createElement("code");
+          pre.classList.add("scene-example");
+          code.innerHTML = data4.portions[portionPointer].exaple;
+          pre.appendChild(code);
+          dialog.appendChild(pre);
           hljs.highlightAll();
+
+          await pause(2000);
+
+          phraseCicle();
+        }
+
+        function phraseCicle() {
+          // dialog.innerHTML += `<pre class="scene-phrase" onclick="speakText(this.innerHTML)">${data4.portions[portionPointer].text[phrasePointer]}</pre>`;
+
+          const node = document.createElement("pre");
+          node.onclick = () => speakText(node.innerHTML);
+          node.classList.add("scene-phrase");
+          node.innerHTML = data4.portions[portionPointer].text[phrasePointer];
+          dialog.appendChild(node);
+
+          speakText2(data4.portions[portionPointer].text[phrasePointer], () => {
+            // recursion repetition of all text phrases
+            setTimeout(() => {
+              phrasePointer++;
+              if (
+                phrasePointer <=
+                data4.portions[portionPointer].text.length - 1
+              ) {
+                phraseCicle();
+              }
+              {
+                log("The end of phrases has been reached");
+                if (portionPointer < data4.portions.length - 1) {
+                  document.querySelector("#next-btn").style.display = "block";
+                }
+              }
+            }, 1000);
+          });
         }
       </script>
     </article>
