@@ -5,11 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="./src/css/common.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/atom-one-dark.min.css"
     />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./src/css/common.css" />
     <!--
        night-owl 
     atom-one-dark
@@ -43,7 +49,7 @@ substr(start, length);
     <!-- ***************************************** Article ***************************************** -->
     <article>
       <h2 class="sound" onclick="speakText(this.innerHTML);">
-        JavaScript String slice()
+        JavaScript String: slice()
       </h2>
 
       <p class="sound" onclick="speakText(this.innerHTML);">
@@ -99,11 +105,13 @@ let part = text.slice(-12, -6);
     <!-- ***************************************** Article ***************************************** -->
     <article id="article2">
       <h2 class="sound" onclick="speakText(this.innerHTML);">
-        JavaScript String substring()
+        JavaScript String: substring()
       </h2>
       <script>
         const article = document.querySelector("#article2");
-        [
+
+        // DATA START
+        const data = [
           "substring() is similar to slice().",
           "The difference is that start and end values less than 0 are treated as 0 in substring().",
           `
@@ -111,9 +119,13 @@ let part = text.slice(-12, -6);
 let str = "Apple, Banana, Kiwi";
 let part = str.substring(7, 13);
 `,
-"He's purely positive!",
-        ].forEach((item) => {
-          let template  = `
+          "He's purely positive!",
+          "If you omit the second parameter, substring() will slice out the rest of the string.",
+        ];
+        // DATA END
+
+        data.forEach((item) => {
+          let template = `
             <p class="sound" onclick="speakText(this.innerHTML);"> ${item} </p>          
           `;
           if (item.slice(0, 7) == "\n>>code")
@@ -124,12 +136,154 @@ let part = str.substring(7, 13);
       </script>
     </article>
 
-    <p class="sound" onclick="speakText(this.innerHTML);"></p>
-    <p class="sound" onclick="speakText(this.innerHTML);"></p>
-    <p class="sound" onclick="speakText(this.innerHTML);"></p>
+    <!-- ***************************************** Article ***************************************** -->
+    <article id="article3">
+      <script>
+        const article3 = document.querySelector("#article3");
 
-    <pre><code>
-    </code></pre>
+        // DATA START
+        const data3 = [
+          `
+>>h JavaScript String: substr()
+          `,
+          "substr() is similar to slice().",
+          "The difference is that the second parameter specifies the length of the extracted part.",
+          `
+>>code
+let str = "Apple, Banana, Kiwi";
+let part = str.substr(7, 6);
+`,
+          "If you omit the second parameter, substr() will slice out the rest of the string.",
+          `
+>>code
+let str = "Apple, Banana, Kiwi";
+let part = str.substr(7);
+          `,
+          "If the first parameter is negative, the position counts from the end of the string.",
+        ];
+        // DATA END
+
+        data3.forEach((item) => {
+          let template = `
+            <p class="sound" onclick="speakText(this.innerHTML);"> ${item} </p>          
+          `;
+          if (item.slice(0, 4) == "\n>>h")
+            template = `<h2 class="sound" onclick="speakText(this.innerHTML);">
+            ${item.slice(4)}
+          </h2>`;
+          if (item.slice(0, 7) == "\n>>code")
+            template = `<pre><code>${item.slice(7)}</code></pre>          
+          `;
+          article3.innerHTML += template;
+        });
+      </script>
+    </article>
+
+    <!-- ***************************************** Article ***************************************** -->
+    <article class="scene" id="article4">
+      <div class="left">
+        <img
+          src="./src/img/teacher.png"
+          alt="Dildo"
+          style="max-width: 20rem; transition: 0.5s"
+          onclick="runArticle4()"
+        />
+      </div>
+      <div class="right">
+        <h2></h2>
+        <pre class="top"></pre>
+        <div class="bottom"></div>
+        <div class="centered">
+          <button type="button" class="start-btn btn btn-success btn-lg">
+            START
+          </button>
+        </div>
+      </div>
+
+      <script>
+        function speakText2(text, clb) {
+          const utterance = new SpeechSynthesisUtterance(text);
+          utterance.onend = function (event) {
+            console.log("Озвучивание закончилось");
+            clb();
+          };
+          // Здесь вы можете настроить параметры, такие как скорость, высота и т. д.
+          // Например:
+          utterance.rate = 0.9; // скорость озвучивания (1 - нормальная скорость)
+          // utterance.pitch = 1; // высота звука (1 - нормальная высота)
+          window.speechSynthesis.cancel();
+          window.speechSynthesis.speak(utterance);
+        }
+
+        function runArticle4() {
+          const article4 = document.querySelector("#article4");
+          const header = article4.querySelector("h2");
+          const dialog = article4.querySelector(".top");
+          const board = article4.querySelector(".bottom");
+          let portionPointer = 0;
+          let phrasePointer = 0;
+
+          // DATA START
+          const data4 = {
+            header: `JavaScript String: substr()`,
+            portions: [
+              {
+                text: [
+                  "substr() is similar to slice().",
+                  `  The difference is that the second parameter ... 
+specifies the length of the extracted part.`,
+                ],
+                exaple: `
+let str = "Apple, Banana, Kiwi";
+let part = str.substr(7, 6);`,
+              },
+              {
+                text: [
+                  "If you omit the second parameter, substr() will slice out the rest of the string.",
+                  "If the first parameter is negative, the position counts from the end of the string.",
+                ],
+                exaple: `
+let str = "Apple, Banana, Kiwi";
+let part = str.substr(7);`,
+              },
+            ],
+          };
+          // DATA END
+
+          header.innerHTML = `<h2 class="sound" onclick="speakText(this.innerHTML);">${data4.header.trim()}</h2>`;
+          let template;
+
+          board.innerHTML = `<pre><code>${data4.portions[0].exaple}</code></pre>`;
+
+          // portionPointer = 0;
+          // phrasePointer = 0;
+
+          function phraseCicle() {
+            log("run phraseCicle()");
+            dialog.innerHTML = `${data4.portions[0].text[phrasePointer]}`;
+            speakText2(data4.portions[0].text[phrasePointer], () => {
+              console.log("DONE!");
+              // recursion repetition of all text phrases
+              setTimeout(() => {
+                phrasePointer++;
+                log(phrasePointer, data4.portions[0].text.length - 1);
+                if (phrasePointer <= data4.portions[0].text.length - 1)
+                  phraseCicle();
+              }, 1000);
+              // when reached end of the array -> go to the next portion
+            });
+          }
+          phraseCicle();
+
+          if (true) {
+            // template =
+          } else if (false) {
+          }
+
+          hljs.highlightAll();
+        }
+      </script>
+    </article>
 
     <script src="./src/js/highlight.js"></script>
 
@@ -141,16 +295,22 @@ let part = str.substring(7, 13);
         const utterance = new SpeechSynthesisUtterance(text);
         // Здесь вы можете настроить параметры, такие как скорость, высота и т. д.
         // Например:
-        utterance.rate = 0.9; // скорость озвучивания (1 - нормальная скорость)
+        utterance.rate = 0.8; // скорость озвучивания (1 - нормальная скорость)
         // utterance.pitch = 1; // высота звука (1 - нормальная высота)
         window.speechSynthesis.cancel();
         window.speechSynthesis.speak(utterance);
       }
+
       setTimeout(() => {
         window.scrollTo(0, document.body.scrollHeight);
       }, 500);
     </script>
 
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
     <script>
       hljs.highlightAll();
