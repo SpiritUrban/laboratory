@@ -252,7 +252,7 @@ let part = str.substr(7);`,
           };
           // Здесь вы можете настроить параметры, такие как скорость, высота и т. д.
           // Например:
-          utterance.rate = 0.9; // скорость озвучивания (1 - нормальная скорость)
+          utterance.rate = 0.8; // скорость озвучивания (1 - нормальная скорость)
           // utterance.pitch = 1; // высота звука (1 - нормальная высота)
           window.speechSynthesis.cancel();
           window.speechSynthesis.speak(utterance);
@@ -266,7 +266,6 @@ let part = str.substr(7);`,
 
         function nextPortion(btn) {
           btn.style.display = "none";
-          // if ( portionPointer < data.portions.length -1 )
           phrasePointer = 0;
           portionPointer++;
           runPortion();
@@ -280,19 +279,13 @@ let part = str.substr(7);`,
 
           header.innerHTML = `<h2 class="sound" onclick="speakText(this.innerHTML);">${data4.header.trim()}</h2>`;
           let template;
-
           board.innerHTML = `<pre><code>${data4.portions[portionPointer].exaple}</code></pre>`;
 
-          // portionPointer = 0;
-          // phrasePointer = 0;
-
           function phraseCicle() {
-            log("run phraseCicle()");
             dialog.innerHTML = `<pre>${data4.portions[portionPointer].text[phrasePointer]}</pre>`;
             speakText2(
               data4.portions[portionPointer].text[phrasePointer],
               () => {
-                console.log("DONE!");
                 // recursion repetition of all text phrases
                 setTimeout(() => {
                   phrasePointer++;
@@ -304,20 +297,16 @@ let part = str.substr(7);`,
                   }
                   {
                     log("The end of phrases has been reached");
-          document.querySelector("#next-btn").style.display = "block";
+                    if (portionPointer < data4.portions.length - 1) {
+                      document.querySelector("#next-btn").style.display =
+                        "block";
+                    }
                   }
                 }, 1000);
-                // when reached end of the array -> go to the next portion
               }
             );
           }
           phraseCicle();
-
-          if (true) {
-            // template =
-          } else if (false) {
-          }
-
           hljs.highlightAll();
         }
       </script>

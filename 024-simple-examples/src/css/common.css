@@ -75,7 +75,7 @@ pre {
   display: flex;
   align-items: stretch;
   flex-direction: row;
-  margin: 3rem;
+  margin: 6rem 3rem 3rem 3rem;
   padding: 2rem 1rem 1rem 1rem;
   font-family: monospace;
   font-weight: 500;
@@ -99,6 +99,7 @@ pre {
 }
 .scene .right .top {
   /* height: 30%; */
+  margin-top: 3rem;
 }
 
 .scene .right .top pre {
@@ -111,11 +112,16 @@ pre {
 }
 
 .scene .right .bottom {
-  height: 50%;
-  background: rgba(159, 111, 48, 0.19);
+  /* height: 50%; */
+  /* background: rgba(159, 111, 48, 0.19); */
   position: absolute;
-  bottom: 0;
+  /* bottom: 0; */
   width: 100%;
+}
+
+.scene .right .bottom pre {
+  width: fit-content;
+  margin: auto;
 }
 
 .scene .right .next-btn {
