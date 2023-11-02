@@ -39,6 +39,32 @@ function speakText2(text, clb) {
   // Например:
   utterance.rate = 0.8; // скорость озвучивания (1 - нормальная скорость)
   // utterance.pitch = 1; // высота звука (1 - нормальная высота)
+  var voices = window.speechSynthesis.getVoices();
+
+  // Google UK English Female (en-GB) [remote]
+  //   utterance.voice = voices.filter(function (voice) {
+  //     return voice.name == "Google UK English Female";
+  //   })[0];
+
+  var englishVoices = speechSynthesis.getVoices().filter(function (voice) {
+    return voice.lang.indexOf("en") === 0; // фильтруем голоса, язык которых начинается на 'en'
+  });
+
+  //   console.log("Available English voices:");
+  englishVoices.forEach(function (voice, index) {
+    // console.log(
+    //   index +
+    //     1 +
+    //     ": " +
+    //     voice.name +
+    //     " (" +
+    //     voice.lang +
+    //     ") [" +
+    //     (voice.localService ? "local" : "remote") +
+    //     "]"
+    // );
+  });
+
   window.speechSynthesis.cancel();
   window.speechSynthesis.speak(utterance);
 }
