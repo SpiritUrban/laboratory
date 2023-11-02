@@ -282,7 +282,7 @@ let part = str.substr(7);`,
           board.innerHTML = `<pre><code>${data4.portions[portionPointer].exaple}</code></pre>`;
 
           function phraseCicle() {
-            dialog.innerHTML = `<pre>${data4.portions[portionPointer].text[phrasePointer]}</pre>`;
+            dialog.innerHTML += `<pre onclick="speakText(this.innerHTML)">${data4.portions[portionPointer].text[phrasePointer]}</pre>`;
             speakText2(
               data4.portions[portionPointer].text[phrasePointer],
               () => {
