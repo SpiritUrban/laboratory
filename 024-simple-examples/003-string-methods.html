@@ -233,8 +233,7 @@ substr() will slice out the rest of the string.`,
                 `If the first parameter is negative, 
 the position counts from the end of the string.`,
               ],
-              exaple: `
-let str = "Apple, Banana, Kiwi";
+              exaple: `let str = "Apple, Banana, Kiwi";
 let part = str.substr(7);`,
             },
           ],
@@ -243,6 +242,20 @@ let part = str.substr(7);`,
 
         let portionPointer = 0;
         let phrasePointer = 0;
+
+        function playSound(path, volume = 1) {
+          let audio = new Audio(path);
+          audio.volume = volume;
+          audio
+            .play()
+            .then(() => {
+              console.log("Audio played successfully");
+            })
+            .catch((error) => {
+              console.error("Audio play failed:", error);
+              // Здесь можно добавить логику восстановления или информировать пользователя
+            });
+        }
 
         function speakText2(text, clb) {
           const utterance = new SpeechSynthesisUtterance(text);
@@ -261,7 +274,12 @@ let part = str.substr(7);`,
         function runArticle4(btn) {
           btn.style.display = "none";
           document.querySelector("#next-btn").style.display = "none";
-          runPortion();
+          
+          playSound('./src/sounds/yamete_kudasai.mp3');
+
+          setTimeout(()=>{
+            runPortion();
+          }, 2000)
         }
 
         function nextPortion(btn) {
