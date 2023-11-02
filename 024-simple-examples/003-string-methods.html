@@ -193,6 +193,7 @@ let part = str.substr(7);
         <div class="top"></div>
         <div class="bottom"></div>
         <button
+          id="next-btn"
           onclick="nextPortion(this)"
           type="button"
           class="next-btn btn btn-success btn-lg"
@@ -259,20 +260,19 @@ let part = str.substr(7);`,
 
         function runArticle4(btn) {
           btn.style.display = "none";
-          document.querySelector(".next-btn").style.display = "block";
+          document.querySelector("#next-btn").style.display = "none";
           runPortion();
         }
 
-        function nextPortion() {
-          // if ( portionPointer < data.portions.length -1 ) 
+        function nextPortion(btn) {
+          btn.style.display = "none";
+          // if ( portionPointer < data.portions.length -1 )
           phrasePointer = 0;
           portionPointer++;
-          runPortion()
+          runPortion();
         }
 
-
         function runPortion() {
-
           const article4 = document.querySelector("#article4");
           const header = article4.querySelector("h2");
           const dialog = article4.querySelector(".top");
@@ -296,15 +296,16 @@ let part = str.substr(7);`,
                 // recursion repetition of all text phrases
                 setTimeout(() => {
                   phrasePointer++;
-                  log(
-                    phrasePointer,
-                    data4.portions[portionPointer].text.length - 1
-                  );
                   if (
                     phrasePointer <=
                     data4.portions[portionPointer].text.length - 1
-                  )
+                  ) {
                     phraseCicle();
+                  }
+                  {
+                    log("The end of phrases has been reached");
+          document.querySelector("#next-btn").style.display = "block";
+                  }
                 }, 1000);
                 // when reached end of the array -> go to the next portion
               }
