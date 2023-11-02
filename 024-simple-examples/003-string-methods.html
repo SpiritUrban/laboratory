@@ -186,21 +186,63 @@ let part = str.substr(7);
           src="./src/img/teacher.png"
           alt="Dildo"
           style="max-width: 20rem; transition: 0.5s"
-          onclick="runArticle4()"
         />
       </div>
       <div class="right">
         <h2></h2>
-        <pre class="top"></pre>
+        <div class="top"></div>
         <div class="bottom"></div>
+        <button
+          onclick="nextPortion(this)"
+          type="button"
+          class="next-btn btn btn-success btn-lg"
+        >
+          NEXT
+        </button>
+
         <div class="centered">
-          <button type="button" class="start-btn btn btn-success btn-lg">
+          <button
+            onclick="runArticle4(this)"
+            type="button"
+            class="start-btn btn btn-success btn-lg"
+          >
             START
           </button>
         </div>
       </div>
 
       <script>
+        // DATA START
+        const data4 = {
+          header: `JavaScript String: substr()`,
+          portions: [
+            {
+              text: [
+                "substr() is similar to slice().",
+                `  The difference is that the second parameter ... 
+specifies the length of the extracted part.`,
+              ],
+              exaple: `let str = "Apple, Banana, Kiwi";
+let part = str.substr(7, 6);`,
+            },
+            {
+              text: [
+                `If you omit the second parameter, 
+substr() will slice out the rest of the string.`,
+                `If the first parameter is negative, 
+the position counts from the end of the string.`,
+              ],
+              exaple: `
+let str = "Apple, Banana, Kiwi";
+let part = str.substr(7);`,
+            },
+          ],
+        };
+        // DATA END
+
+        let portionPointer = 0;
+        let phrasePointer = 0;
+
         function speakText2(text, clb) {
           const utterance = new SpeechSynthesisUtterance(text);
           utterance.onend = function (event) {
@@ -215,63 +257,58 @@ let part = str.substr(7);
           window.speechSynthesis.speak(utterance);
         }
 
-        function runArticle4() {
+        function runArticle4(btn) {
+          btn.style.display = "none";
+          document.querySelector(".next-btn").style.display = "block";
+          runPortion();
+        }
+
+        function nextPortion() {
+          // if ( portionPointer < data.portions.length -1 ) 
+          phrasePointer = 0;
+          portionPointer++;
+          runPortion()
+        }
+
+
+        function runPortion() {
+
           const article4 = document.querySelector("#article4");
           const header = article4.querySelector("h2");
           const dialog = article4.querySelector(".top");
           const board = article4.querySelector(".bottom");
-          let portionPointer = 0;
-          let phrasePointer = 0;
-
-          // DATA START
-          const data4 = {
-            header: `JavaScript String: substr()`,
-            portions: [
-              {
-                text: [
-                  "substr() is similar to slice().",
-                  `  The difference is that the second parameter ... 
-specifies the length of the extracted part.`,
-                ],
-                exaple: `
-let str = "Apple, Banana, Kiwi";
-let part = str.substr(7, 6);`,
-              },
-              {
-                text: [
-                  "If you omit the second parameter, substr() will slice out the rest of the string.",
-                  "If the first parameter is negative, the position counts from the end of the string.",
-                ],
-                exaple: `
-let str = "Apple, Banana, Kiwi";
-let part = str.substr(7);`,
-              },
-            ],
-          };
-          // DATA END
 
           header.innerHTML = `<h2 class="sound" onclick="speakText(this.innerHTML);">${data4.header.trim()}</h2>`;
           let template;
 
-          board.innerHTML = `<pre><code>${data4.portions[0].exaple}</code></pre>`;
+          board.innerHTML = `<pre><code>${data4.portions[portionPointer].exaple}</code></pre>`;
 
           // portionPointer = 0;
           // phrasePointer = 0;
 
           function phraseCicle() {
             log("run phraseCicle()");
-            dialog.innerHTML = `${data4.portions[0].text[phrasePointer]}`;
-            speakText2(data4.portions[0].text[phrasePointer], () => {
-              console.log("DONE!");
-              // recursion repetition of all text phrases
-              setTimeout(() => {
-                phrasePointer++;
-                log(phrasePointer, data4.portions[0].text.length - 1);
-                if (phrasePointer <= data4.portions[0].text.length - 1)
-                  phraseCicle();
-              }, 1000);
-              // when reached end of the array -> go to the next portion
-            });
+            dialog.innerHTML = `<pre>${data4.portions[portionPointer].text[phrasePointer]}</pre>`;
+            speakText2(
+              data4.portions[portionPointer].text[phrasePointer],
+              () => {
+                console.log("DONE!");
+                // recursion repetition of all text phrases
+                setTimeout(() => {
+                  phrasePointer++;
+                  log(
+                    phrasePointer,
+                    data4.portions[portionPointer].text.length - 1
+                  );
+                  if (
+                    phrasePointer <=
+                    data4.portions[portionPointer].text.length - 1
+                  )
+                    phraseCicle();
+                }, 1000);
+                // when reached end of the array -> go to the next portion
+              }
+            );
           }
           phraseCicle();
 

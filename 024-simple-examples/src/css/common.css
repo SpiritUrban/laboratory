@@ -88,25 +88,41 @@ pre {
   background: #283c482b;
   width: 100%;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .scene .right h2 {
   width: fit-content;
-  margin-top: -5rem;
+  margin-top: -2rem;
 }
 .scene .right .top {
   /* height: 30%; */
+}
+
+.scene .right .top pre {
   border: 3px solid gray;
   padding: 1rem;
   border-radius: 2rem;
   background: #000000a8;
   font-size: 1.2rem;
+  text-align: center;
 }
+
 .scene .right .bottom {
   height: 50%;
   background: rgba(159, 111, 48, 0.19);
   position: absolute;
   bottom: 0;
   width: 100%;
+}
+
+.scene .right .next-btn {
+  position: absolute;
+  bottom: 0;
+  transform: scale(1.5);
+  display: none;
 }
 
 .centered {
@@ -121,14 +137,17 @@ pre {
   top: 50%;
   transform: translate(10px, 10px); */
   animation: start-btn-animatin 4s infinite;
-  animation-timing-function: ease-in-out;/* or: ease, ease-in, ease-in-out, linear, cubic-bezier(x1, y1, x2, y2) */
+  animation-timing-function: ease-in-out; /* or: ease, ease-in, ease-in-out, linear, cubic-bezier(x1, y1, x2, y2) */
 }
-
 
 @keyframes start-btn-animatin {
-  0%    { transform: scale(1.5); }
-  50%   { transform: scale(3); }
-  100%  { transform: scale(1.5); }
+  0% {
+    transform: scale(1.5);
+  }
+  50% {
+    transform: scale(3);
+  }
+  100% {
+    transform: scale(1.5);
+  }
 }
-
- 
