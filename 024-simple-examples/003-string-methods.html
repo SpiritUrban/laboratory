@@ -247,21 +247,33 @@ let part = str.substr(7);
           data4 = doc[0];
           log("Loaded data");
 
-          doc.forEach((subChapter, i) => {
-            nav.innerHTML += `<button type="button" onclick="loadSubChapter(${i}, this)" class="sub-chapter btn btn-outline-secondary btn-lg ${
-              i == 0 ? "active" : ""
-            }">${subChapter.header}</button>`;
-          });
+          renderNavigation();
+          // doc.forEach((subChapter, i) => {
+          //   nav.innerHTML += `<button type="button" onclick="loadSubChapter(${i}, this)" class="sub-chapter btn btn-outline-secondary btn-lg ${
+          //     i == 0 ? "active" : ""
+          //   }">${subChapter.header}</button>`;
+          // });
         } catch (e) {
           console.error(e);
         }
       }
       init();
 
+      function renderNavigation() {
+        nav.innerHTML = '';
+        doc.forEach((subChapter, i) => {
+          nav.innerHTML += `<button type="button" onclick="loadSubChapter(${i}, this)" class="sub-chapter btn btn-outline-secondary btn-lg ${
+            i == subChapterPointer ? "active" : ""
+          }">${subChapter.header}</button>`;
+        });
+      }
+
       function loadSubChapter(i, btn) {
         resetScene();
         log(i, btn);
+        subChapterPointer = i;
         data4 = doc[i];
+        renderNavigation()
         header.innerHTML = `<h2 class="sound" onclick="speakText(this.innerHTML);">${data4.header.trim()}</h2>`;
       }
 
