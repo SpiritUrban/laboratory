@@ -7,6 +7,10 @@ body {
   flex-direction: column;
   padding: 3rem 3rem 0rem 3rem;
 }
+nav {}
+.sub-chapter.btn{
+  margin: 1rem .5rem;
+}
 
 section {
   font-size: 1rem;

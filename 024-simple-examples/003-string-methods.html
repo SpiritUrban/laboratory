@@ -179,6 +179,8 @@ let part = str.substr(7);
       </script>
     </article>
 
+    <nav></nav>
+
     <!-- ***************************************** Article ***************************************** -->
     <article class="scene" id="article4">
       <div class="left">
@@ -216,6 +218,13 @@ let part = str.substr(7);
     <script src="./src/data/data.js"></script>
 
     <script>
+      // panel
+      const nav = document.querySelector("nav");
+
+      dataX.forEach((subChapter) => {
+        nav.innerHTML += `<button type="button" class="sub-chapter btn btn-outline-secondary btn-lg">${subChapter.header}</button>`;
+      });
+
       let portionPointer = 0;
       let phrasePointer = 0;
 
