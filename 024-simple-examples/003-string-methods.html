@@ -234,9 +234,12 @@ let part = str.substr(7);
         ["header", "#scene h2"],
         ["dialog", "#scene .dialog"],
         ["nav", "nav"],
+        ["nextBtn", "#next-btn"],
+        ["startBtn", "#start-btn"],
       ].forEach((item) => (UI[item[0]] = document.querySelector(item[1])));
 
       log(UI);
+
 
       async function init() {
         try {
@@ -280,7 +283,7 @@ let part = str.substr(7);
       async function runScene(btn) {
         if (!data4) return;
         btn.style.display = "none";
-        document.querySelector("#next-btn").style.display = "none";
+        UI.nextBtn.style.display = "none";
         playSound("./src/sounds/yamete_kudasai.mp3");
         await pause(2000);
         runPortion();
@@ -290,8 +293,8 @@ let part = str.substr(7);
         portionPointer = 0;
         phrasePointer = 0;
         UI.dialog.innerHTML = "";
-        document.querySelector("#next-btn").style.display = "none";
-        document.querySelector("#start-btn").style.display = "block";
+        UI.nextBtn.style.display = "none";
+        UI.startBtn.style.display = "block";
       }
 
       function nextPortion(btn) {
@@ -342,7 +345,7 @@ let part = str.substr(7);
             } else {
               log("The end of phrases has been reached");
               if (portionPointer < data4.portions.length - 1) {
-                document.querySelector("#next-btn").style.display = "block";
+                UI.nextBtn.style.display = "block";
               }
             }
           }, 1000);
