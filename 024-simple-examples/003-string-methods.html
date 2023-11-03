@@ -182,7 +182,7 @@ let part = str.substr(7);
     <nav></nav>
 
     <!-- ***************************************** Article ***************************************** -->
-    <article class="scene" id="article4">
+    <article class="scene" id="scene">
       <div class="left">
         <img
           src="./src/img/teacher.png"
@@ -228,31 +228,27 @@ let part = str.substr(7);
       let data4;
       let doc;
 
-      const article4 = document.querySelector("#article4");
-      const header = article4.querySelector("h2");
-      const dialog = article4.querySelector(".top");
-      const nav = document.querySelector("nav");
+      const UI = {};
+      [
+        ["scene", "#scene"],
+        ["header", "#scene h2"],
+        ["dialog", "#scene .top"],
+        ["nav", "nav"]
+      ].forEach((item)=>UI[item[0]]= document.querySelector(item[1]));
+
+      log(UI)
 
       async function init() {
         try {
           const answer = await fetch("./src/data/data.yaml");
           const yaml = await answer.text();
-          log(yaml);
-
+          // log(yaml);
           // yaml
           doc = jsyaml.load(yaml);
-          console.log(doc);
-
-          // const data4 = dataY;
+          // log(doc);
           data4 = doc[0];
           log("Loaded data");
-
           renderNavigation();
-          // doc.forEach((subChapter, i) => {
-          //   nav.innerHTML += `<button type="button" onclick="loadSubChapter(${i}, this)" class="sub-chapter btn btn-outline-secondary btn-lg ${
-          //     i == 0 ? "active" : ""
-          //   }">${subChapter.header}</button>`;
-          // });
         } catch (e) {
           console.error(e);
         }
@@ -260,9 +256,9 @@ let part = str.substr(7);
       init();
 
       function renderNavigation() {
-        nav.innerHTML = '';
+        UI.nav.innerHTML = '';
         doc.forEach((subChapter, i) => {
-          nav.innerHTML += `<button type="button" onclick="loadSubChapter(${i}, this)" class="sub-chapter btn btn-outline-secondary btn-lg ${
+          UI.nav.innerHTML += `<button type="button" onclick="loadSubChapter(${i}, this)" class="sub-chapter btn btn-outline-secondary btn-lg ${
             i == subChapterPointer ? "active" : ""
           }">${subChapter.header}</button>`;
         });
@@ -274,7 +270,7 @@ let part = str.substr(7);
         subChapterPointer = i;
         data4 = doc[i];
         renderNavigation()
-        header.innerHTML = `<h2 class="sound" onclick="speakText(this.innerHTML);">${data4.header.trim()}</h2>`;
+        UI.header.innerHTML = `<h2 class="sound" onclick="speakText(this.innerHTML);">${data4.header.trim()}</h2>`;
       }
 
       async function runScene(btn) {
@@ -289,7 +285,7 @@ let part = str.substr(7);
       function resetScene() {
         portionPointer = 0;
         phrasePointer = 0;
-        dialog.innerHTML = "";
+        UI.dialog.innerHTML = "";
         document.querySelector("#next-btn").style.display = "none";
         document.querySelector("#start-btn").style.display = "block";
       }
@@ -307,7 +303,7 @@ let part = str.substr(7);
         pre.classList.add("scene-example");
         code.innerHTML = content;
         pre.appendChild(code);
-        dialog.appendChild(pre);
+        UI.dialog.appendChild(pre);
         hljs.highlightAll();
       }
 
@@ -316,7 +312,7 @@ let part = str.substr(7);
         node.onclick = () => speakText(node.innerHTML);
         node.classList.add("scene-phrase");
         node.innerHTML = content;
-        dialog.appendChild(node);
+        UI.dialog.appendChild(node);
       }
 
       async function runPortion() {
