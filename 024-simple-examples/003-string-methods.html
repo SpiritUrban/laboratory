@@ -214,25 +214,48 @@ let part = str.substr(7);
       </div>
     </article>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
+
     <script src="./src/js/lib.js"></script>
     <script src="./src/data/data.js"></script>
 
     <script>
-      // panel
+      let portionPointer = 0;
+      let phrasePointer = 0;
+
+      let data4;
+
+      const article4 = document.querySelector("#article4");
+      const header = article4.querySelector("h2");
+      const dialog = article4.querySelector(".top");
       const nav = document.querySelector("nav");
 
       dataX.forEach((subChapter) => {
         nav.innerHTML += `<button type="button" class="sub-chapter btn btn-outline-secondary btn-lg">${subChapter.header}</button>`;
       });
 
-      let portionPointer = 0;
-      let phrasePointer = 0;
+      async function init() {
+        try {
+          const answer = await fetch("./src/data/data.yaml");
+          const yaml = await answer.text();
+          log(yaml);
 
-      const article4 = document.querySelector("#article4");
-      const header = article4.querySelector("h2");
-      const dialog = article4.querySelector(".top");
+          // yaml
+          const doc = jsyaml.load(yaml);
+          console.log(doc);
+
+          // const data4 = dataY;
+          data4 = doc[0];
+          log('Loaded data')
+        } catch (e) {
+          console.error(e);
+        }
+      }
+      init();
+
 
       async function runArticle4(btn) {
+        if (!data4) return;
         btn.style.display = "none";
         document.querySelector("#next-btn").style.display = "none";
         playSound("./src/sounds/yamete_kudasai.mp3");
@@ -267,7 +290,13 @@ let part = str.substr(7);
 
       async function runPortion() {
         header.innerHTML = `<h2 class="sound" onclick="speakText(this.innerHTML);">${data4.header.trim()}</h2>`;
-        addExampleToScene(data4.portions[portionPointer].exaple);
+        log(
+          ">>>",
+          data4,
+          data4.portions[portionPointer].example,
+          portionPointer
+        );
+        addExampleToScene(data4.portions[portionPointer].example);
         await pause(2000);
         phraseCicle();
       }
