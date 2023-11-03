@@ -204,7 +204,8 @@ let part = str.substr(7);
 
         <div class="centered">
           <button
-            onclick="runArticle4(this)"
+            id="start-btn"
+            onclick="runScene(this)"
             type="button"
             class="start-btn btn btn-success btn-lg"
           >
@@ -220,19 +221,17 @@ let part = str.substr(7);
     <script src="./src/data/data.js"></script>
 
     <script>
+      let subChapterPointer = 0;
       let portionPointer = 0;
       let phrasePointer = 0;
 
       let data4;
+      let doc;
 
       const article4 = document.querySelector("#article4");
       const header = article4.querySelector("h2");
       const dialog = article4.querySelector(".top");
       const nav = document.querySelector("nav");
-
-      dataX.forEach((subChapter) => {
-        nav.innerHTML += `<button type="button" class="sub-chapter btn btn-outline-secondary btn-lg">${subChapter.header}</button>`;
-      });
 
       async function init() {
         try {
@@ -241,26 +240,46 @@ let part = str.substr(7);
           log(yaml);
 
           // yaml
-          const doc = jsyaml.load(yaml);
+          doc = jsyaml.load(yaml);
           console.log(doc);
 
           // const data4 = dataY;
           data4 = doc[0];
-          log('Loaded data')
+          log("Loaded data");
+
+          doc.forEach((subChapter, i) => {
+            nav.innerHTML += `<button type="button" onclick="loadSubChapter(${i}, this)" class="sub-chapter btn btn-outline-secondary btn-lg ${
+              i == 0 ? "active" : ""
+            }">${subChapter.header}</button>`;
+          });
         } catch (e) {
           console.error(e);
         }
       }
       init();
 
+      function loadSubChapter(i, btn) {
+        resetScene();
+        log(i, btn);
+        data4 = doc[i];
+        header.innerHTML = `<h2 class="sound" onclick="speakText(this.innerHTML);">${data4.header.trim()}</h2>`;
+      }
 
-      async function runArticle4(btn) {
+      async function runScene(btn) {
         if (!data4) return;
         btn.style.display = "none";
         document.querySelector("#next-btn").style.display = "none";
         playSound("./src/sounds/yamete_kudasai.mp3");
         await pause(2000);
         runPortion();
+      }
+
+      function resetScene() {
+        portionPointer = 0;
+        phrasePointer = 0;
+        dialog.innerHTML = "";
+        document.querySelector("#next-btn").style.display = "none";
+        document.querySelector("#start-btn").style.display = "block";
       }
 
       function nextPortion(btn) {
@@ -289,13 +308,6 @@ let part = str.substr(7);
       }
 
       async function runPortion() {
-        header.innerHTML = `<h2 class="sound" onclick="speakText(this.innerHTML);">${data4.header.trim()}</h2>`;
-        log(
-          ">>>",
-          data4,
-          data4.portions[portionPointer].example,
-          portionPointer
-        );
         addExampleToScene(data4.portions[portionPointer].example);
         await pause(2000);
         phraseCicle();

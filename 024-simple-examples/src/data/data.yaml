@@ -25,7 +25,7 @@
   portions:
     - text:
         - |
-          substr() is similar to slice().
+          substr() is similar to slice()!!!.
           The difference is that the second parameter ...
           specifies the length of the extracted part.
       example: |
