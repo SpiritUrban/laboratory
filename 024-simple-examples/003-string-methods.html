@@ -192,7 +192,7 @@ let part = str.substr(7);
       </div>
       <div class="right">
         <h2></h2>
-        <div class="top"></div>
+        <div class="dialog"></div>
         <button
           id="next-btn"
           onclick="nextPortion(this)"
@@ -232,11 +232,11 @@ let part = str.substr(7);
       [
         ["scene", "#scene"],
         ["header", "#scene h2"],
-        ["dialog", "#scene .top"],
-        ["nav", "nav"]
-      ].forEach((item)=>UI[item[0]]= document.querySelector(item[1]));
+        ["dialog", "#scene .dialog"],
+        ["nav", "nav"],
+      ].forEach((item) => (UI[item[0]] = document.querySelector(item[1])));
 
-      log(UI)
+      log(UI);
 
       async function init() {
         try {
@@ -256,20 +256,24 @@ let part = str.substr(7);
       init();
 
       function renderNavigation() {
-        UI.nav.innerHTML = '';
+        UI.nav.innerHTML = "";
         doc.forEach((subChapter, i) => {
-          UI.nav.innerHTML += `<button type="button" onclick="loadSubChapter(${i}, this)" class="sub-chapter btn btn-outline-secondary btn-lg ${
+          UI.nav.innerHTML += `<button type="button" onclick="loadSubChapter(${i})" class="sub-chapter btn btn-outline-secondary btn-lg ${
             i == subChapterPointer ? "active" : ""
           }">${subChapter.header}</button>`;
         });
+        renderHeader();
       }
 
-      function loadSubChapter(i, btn) {
+      function loadSubChapter(i) {
         resetScene();
-        log(i, btn);
         subChapterPointer = i;
         data4 = doc[i];
-        renderNavigation()
+        renderNavigation();
+        renderHeader();
+      }
+
+      function renderHeader() {
         UI.header.innerHTML = `<h2 class="sound" onclick="speakText(this.innerHTML);">${data4.header.trim()}</h2>`;
       }
 
