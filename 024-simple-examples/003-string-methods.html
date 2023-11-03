@@ -308,7 +308,8 @@ let part = str.substr(7);
       }
 
       async function runPortion() {
-        addExampleToScene(data4.portions[portionPointer].example);
+        const example = data4.portions[portionPointer].example;
+        if (example) addExampleToScene(example);
         await pause(2000);
         phraseCicle();
       }

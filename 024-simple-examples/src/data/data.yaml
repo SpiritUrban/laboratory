@@ -1,3 +1,72 @@
+- header: "Methods"
+  portions:
+    - text:
+        - |
+          substring(). slice(). substr().
+        - |
+          There are 3 methods for extracting a part of a string:
+      example: |
+        slice(start, end);
+        substring(start, end);
+        substr(start, length);
+
+- header: "JavaScript String: slice()"
+  portions:
+    - text:
+        - |
+          slice() extracts a part of a string 
+          and returns the extracted part 
+          in a new string.
+        - |
+          The method takes 2 parameters: 
+          start position, 
+          and end position 
+          (end not included).
+      example: |
+        let text = "Apple, Banana, Kiwi";
+        let part = text.slice(7, 13);
+    - text:
+        - |
+          Slice out a portion of a string from position 7 
+          to position 13
+        - |
+          If you omit the second parameter, 
+          the method will slice out the rest of the string:
+      example: |
+        let text = "Apple, Banana, Kiwi";
+        let part = text.slice(7);
+    - text:
+        - |
+          If a parameter is negative, 
+          the position is counted from the end of the string
+      example: |
+        let text = "Apple, Banana, Kiwi";
+        let part = text.slice(-12);
+    - text:
+        - |
+          This example slices out a portion of a string 
+          from position -12 to position -6
+      example: |
+        let text = "Apple, Banana, Kiwi";
+        let part = text.slice(-12, -6);          
+
+- header: "JavaScript String: substring()"
+  portions:
+    - text:
+        - substring() is similar to slice()
+        - |
+          The difference is that 
+          start and end values less than 0 are treated as 0 
+          in substring()
+      example: |
+        let str = "Apple, Banana, Kiwi";
+        let part = str.substring(7, 13);
+    - text:
+        - He's purely positive!
+        - |
+          If you omit the second parameter, 
+          substring() will slice out the rest of the string
+
 - header: "JavaScript String: substr()"
   portions:
     - text:
@@ -14,28 +83,6 @@
           If you omit the second parameter, 
           substr() will slice out the rest of the string.
         - |
-          If the first parameter is negative, 
-          the position counts from the end of the string.
-      example: |
-        let str = "Apple, Banana, Kiwi";
-        let part = str.substr(7);
-        // part -> 'Banana, Kiwi'
-
-- header: "JavaScript String: substr()2"
-  portions:
-    - text:
-        - |
-          substr() is similar to slice()!!!.
-          The difference is that the second parameter ...
-          specifies the length of the extracted part.
-      example: |
-        let str = "Apple, Banana, Kiwi";
-        let part = str.substr(7, 6);
-        // part -> 'Banana'
-    - text:
-        - |
-          If you omit the second parameter, 
-          substr() will slice out the rest of the string.
           If the first parameter is negative, 
           the position counts from the end of the string.
       example: |
