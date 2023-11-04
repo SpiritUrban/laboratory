@@ -206,4 +206,45 @@
       example: |
           let text1 = "      Hello World!      ";
           let text2 = text1.trimEnd();
-          // text2 -> "      Hello World!"               
+          // text2 -> "      Hello World!"
+
+- header: "Padding"
+  portions:
+    - text:
+        - |
+          ECMAScript 2017 added two new string methods to JavaScript: 
+          padStart() and padEnd() 
+          to support padding 
+          at the beginning and at the end of a string.
+        - |
+          The padStart() method pads a string from the start.
+        - |
+          It pads a string with another string (multiple times) 
+          until it reaches a given length.
+        - |
+          For example: Pad a string with "0" until it reaches the length 4
+      example: |
+          let text = "5";
+          let padded = text.padStart(4,"0");
+          // padded -> 0005
+    - text:
+        - |
+          Note
+        - |
+          The padStart() method is a string method.
+        - |
+          To pad a number, convert the number to a string first.
+      example: |
+          let numb = 5;
+          let text = numb.toString(); // <- !!!
+          let padded = text.padStart(4,"0");
+    - text:
+        - |
+          The padEnd() method pads a string from the end.
+        - |
+          It pads a string with another string (multiple times) 
+          until it reaches a given length.
+      example: |
+          let text = "5";
+          let padded = text.padEnd(4,"x");
+          // padded -> 5xxx
