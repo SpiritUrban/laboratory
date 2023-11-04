@@ -109,13 +109,13 @@ pre {
   margin-top: -4rem;
   padding: 2rem;
 }
-.scene .right .top {
+.scene .right .dialog {
   /* height: 30%; */
   margin-top: -2rem;
   transition: 0.3s;
 }
 
-.scene .right .top .scene-phrase {
+.scene .right .dialog .scene-phrase {
   border: 3px solid gray;
   padding: 1rem;
   border-radius: 2rem;
@@ -130,12 +130,12 @@ pre {
   animation: fadeIn 1s ease-in-out forwards;
 }
 
-.scene .right .top .scene-phrase:hover {
+.scene .right .dialog .scene-phrase:hover {
   transform: translateY(-0.3rem) scale(1.05);
   filter: drop-shadow(0px 7px 5px #00000696);
 }
 
-.scene .right .top .scene-example {
+.scene .right .dialog .scene-example {
   width: fit-content;
   margin: 3rem auto 1rem auto;
   /* filter: drop-shadow(0px 7px 5px #00000642); */

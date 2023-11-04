@@ -1,4 +1,4 @@
-- header: "Methods"
+- header: "String Methods"
   portions:
     - text:
         - |
@@ -10,7 +10,7 @@
         substring(start, end);
         substr(start, length);
 
-- header: "JavaScript String: slice()"
+- header: "slice()"
   portions:
     - text:
         - |
@@ -25,6 +25,7 @@
       example: |
         let text = "Apple, Banana, Kiwi";
         let part = text.slice(7, 13);
+        // part -> "Banana"
     - text:
         - |
           Slice out a portion of a string from position 7 
@@ -35,6 +36,7 @@
       example: |
         let text = "Apple, Banana, Kiwi";
         let part = text.slice(7);
+        // part -> "Banana, Kiwi"
     - text:
         - |
           If a parameter is negative, 
@@ -42,15 +44,17 @@
       example: |
         let text = "Apple, Banana, Kiwi";
         let part = text.slice(-12);
+        // part -> "Banana, Kiwi"
     - text:
         - |
           This example slices out a portion of a string 
           from position -12 to position -6
       example: |
         let text = "Apple, Banana, Kiwi";
-        let part = text.slice(-12, -6);          
+        let part = text.slice(-12, -6);
+        // part -> "Banana"
 
-- header: "JavaScript String: substring()"
+- header: "substring()"
   portions:
     - text:
         - substring() is similar to slice()
@@ -67,7 +71,7 @@
           If you omit the second parameter, 
           substring() will slice out the rest of the string
 
-- header: "JavaScript String: substr()"
+- header: "substr()"
   portions:
     - text:
         - substr() is similar to slice().
@@ -89,3 +93,117 @@
         let str = "Apple, Banana, Kiwi";
         let part = str.substr(7);
         // part -> 'Banana, Kiwi'
+
+- header: "Replacing String Content"
+  portions:
+    - text:
+        - | 
+          The replace() method replaces 
+          a specified value with another value 
+          in a string
+      example: |
+        let text = "Please visit Microsoft!";
+        let newText = text.replace("Microsoft", "W3Schools");
+        // newText -> "Please visit W3Schools!"
+    - text:
+        - |
+          The replace() method does not change the string 
+          it is called on.
+        - |
+          The replace() method returns a new string.
+        - |
+          The replace() method replaces only the first match
+        - |
+          If you want to replace all matches, 
+          use a regular expression ...
+          with the /g flag set.
+      example: |
+        let text = "Please visit Microsoft and Microsoft!";
+        let newText = text.replace(/Microsoft/g, "W3Schools");
+        // newText -> "Please visit W3Schools and W3Schools!"
+    - text:
+        - |
+          By default, 
+          the replace() method is case sensitive.
+        - |
+          To replace case insensitive, 
+          use a regular expression with an /i flag (insensitive)
+      example: |
+          let text = "Please visit Microsoft!";
+          let newText = text.replace(/MICROSOFT/i, "W3Schools");
+          // newText -> "Please visit W3Schools!"
+
+- header: "replaceAll()"
+  portions:
+    - text:
+        - | 
+          In 2021, 
+          JavaScript introduced the string method 
+          replaceAll()
+      example: |
+          let text = "I love cats. Cats are very easy to love. \
+          Cats are very popular."
+          text = text.replaceAll("Cats","Dogs");
+          text = text.replaceAll("cats","dogs");
+          // text -> I love dogs. Dogs are very easy to love. Dogs are very popular.
+    - text:
+        - | 
+          The replaceAll() method allows you to specify a 
+          regular expression instead of a string 
+          to be replaced.
+        - | 
+          If the parameter is a regular expression, 
+          the global flag (g) must be set, 
+          otherwise a TypeError is thrown.
+      example: |
+          let text = "I love cats. Cats are very easy to love. Cats are very popular";
+          text = text.replaceAll(/Cats/g,"Dogs");
+          text = text.replaceAll(/cats/g,"dogs");
+          // text -> I love dogs. Dogs are very easy to love. Dogs are very popular
+
+- header: "Converting to Upper and Lower Case"
+  portions:
+    - text:
+        - | 
+          A string is converted to upper case with toUpperCase()
+      example: |
+          let text1 = "Hello World!";
+          let text2 = text1.toUpperCase();  
+          // text2 -> "HELLO WORLD!"
+    - text:
+        - | 
+          A string is converted to lower case with toLowerCase()
+      example: |
+          let text1 = "Hello World!";
+          let text2 = text1.toLowerCase();
+          // text2 -> "hello world!"
+
+- header: "trim(), trimStart(), trimEnd()"
+  portions:
+    - text:
+        - | 
+          The trim() method removes whitespace from both sides of a string
+      example: |
+          let text1 = "      Hello World!      ";
+          let text2 = text1.trim();
+          // text2 -> "Hello World!"
+    - text:
+        - | 
+          ECMAScript 2019 added the String method trimStart() to JavaScript.
+        - |
+          The trimStart() method works like trim(), 
+          but removes whitespace only from the start of a string.
+      example: |
+          let text1 = "      Hello World!      ";
+          let text2 = text1.trimStart();
+          // text2 -> "Hello World!      "
+    - text:
+        - | 
+          ECMAScript 2019 added the String method trimEnd() to JavaScript.
+        - |
+          The trimEnd() method works like trim(), 
+          but removes whitespace only from the end of a string.
+      example: |
+          let text1 = "      Hello World!      ";
+          let text2 = text1.trimEnd();
+          // text2 -> "      Hello World!"               

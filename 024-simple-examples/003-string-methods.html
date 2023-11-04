@@ -240,7 +240,6 @@ let part = str.substr(7);
 
       log(UI);
 
-
       async function init() {
         try {
           const answer = await fetch("./src/data/data.yaml");
@@ -304,13 +303,16 @@ let part = str.substr(7);
         runPortion();
       }
 
-      function addExampleToScene(content) {
+      async function addExampleToScene(content) {
         const pre = document.createElement("pre");
         const code = document.createElement("code");
         pre.classList.add("scene-example");
         code.innerHTML = content;
+        code.classList.add("language-javascript");
+        // hljs language-rust language-javascript
         pre.appendChild(code);
         UI.dialog.appendChild(pre);
+        // await pause(2000);
         hljs.highlightAll();
       }
 
@@ -325,14 +327,17 @@ let part = str.substr(7);
       async function runPortion() {
         const example = data4.portions[portionPointer].example;
         if (example) addExampleToScene(example);
+        scrollDown();
         await pause(2000);
         phraseCicle();
       }
 
       // recursion repetition of all text phrases
-      function phraseCicle() {
+      async function phraseCicle() {
         addPhraseToScene(data4.portions[portionPointer].text[phrasePointer]);
         scrollDown();
+        // await pause(1000);
+        // scrollDown();
         //
         speakText2(data4.portions[portionPointer].text[phrasePointer], () => {
           setTimeout(() => {
@@ -346,6 +351,7 @@ let part = str.substr(7);
               log("The end of phrases has been reached");
               if (portionPointer < data4.portions.length - 1) {
                 UI.nextBtn.style.display = "block";
+                scrollDown();
               }
             }
           }, 1000);
