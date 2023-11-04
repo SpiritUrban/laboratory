@@ -248,3 +248,60 @@
           let text = "5";
           let padded = text.padEnd(4,"x");
           // padded -> 5xxx
+
+- header: "Extracting String Characters"
+  portions:
+    - text:
+        - |
+          There are 3 methods for extracting string characters:
+        - |
+          charAt(position)   
+        - |
+          charCodeAt(position)
+        - |
+          Property access [ ]
+    - text:
+        - |
+          The charAt() method 
+          returns the character at a specified index (position) 
+          in a string
+      example: |
+          let text = "HELLO WORLD";
+          let char = text.charAt(0);
+          // char -> "H"
+    - text:
+        - |
+          ECMAScript 5 (2009) allows property access [ ] on strings:
+        - |
+          Note
+        - |
+          Property access might be a little unpredictable
+        - |
+          It makes strings look like arrays (but they are not)
+        - |
+          If no character is found, 
+          [ ] returns undefined, 
+          while charAt() returns an empty string.
+      example: |
+          let text = "HELLO WORLD";
+          let char = text[0];
+          // char -> "H"
+    - text:
+        - |
+          It is read only. 
+        - |
+          str[0] = "A" gives no error (but does not work!)
+      example: |
+          let text = "HELLO WORLD";
+          text[0] = "A";    // Gives no error, but does not work          
+    - text:
+        - |
+          The charCodeAt() method 
+          returns the unicode of the character at a specified index 
+          in a string
+        - |
+          The method returns a UTF-16 code (an integer between 0 and 65535)
+      example: |
+          let text = "HELLO WORLD";
+          let char = text.charCodeAt(0);
+          // char -> "72"
